@@ -25,6 +25,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+![Schema](http://res.cloudinary.com/lx9gdutds/image/upload/v1496261950/schema_zwdl4x.png)
 
 get '/movies' do
 
