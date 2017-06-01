@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20170531231825) do
   create_table "movies", force: :cascade do |t|
     t.string   "title"
     t.string   "director"
+    t.text     "description"
     t.date     "release_date"
     t.string   "poster_url"
     t.string   "background_url"
