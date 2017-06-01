@@ -58,7 +58,7 @@ require 'ostruct'
       poster = "https://image.tmdb.org/t/p/w640" + movie["poster_path"]
     end
    Movie.create!(tmdid: movie["id"], title: movie["title"],
-    poster_url: poster, background_url: background, release_date: movie["release_date"])
+    poster_url: poster, background_url: background, description: movie["overview"], release_date: movie["release_date"])
   end
 
 
@@ -96,7 +96,7 @@ require 'ostruct'
       poster = "https://image.tmdb.org/t/p/w640" + movie["poster_path"]
     end
    Movie.create!(tmdid: movie["id"], title: movie["title"],
-    poster_url: poster, background_url: background, release_date: movie["release_date"])
+    poster_url: poster, background_url: background, description: movie["overview"], release_date: movie["release_date"])
   end
 
 
