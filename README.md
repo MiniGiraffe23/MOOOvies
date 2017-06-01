@@ -1,4 +1,5 @@
 # README
+![logo](http://res.cloudinary.com/lx9gdutds/image/upload/v1496260922/Moovies_trva1n.png)
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
