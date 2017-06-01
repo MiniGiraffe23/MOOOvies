@@ -1,7 +1,7 @@
 # README
 ![logo](http://res.cloudinary.com/lx9gdutds/image/upload/v1496260922/Moovies_trva1n.png)
 
-Things you may want to cover:
+Gem Description:
 
 * Ruby version
 2.3.0
