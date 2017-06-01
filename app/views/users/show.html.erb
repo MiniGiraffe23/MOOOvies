@@ -1,0 +1,17 @@
+<p><%= link_to('Edit registration', edit_user_registration_path) %></p>
+<h1>Hi, <%= current_user.first_name %></h1>
+
+
+<h3>Watchlist:</h3>
+<ul>
+  <% current_user.watchlists.each do |watchlist| %>
+  <li><%= link_to watchlist.movie.title, watchlist.movie %></li>
+<% end %>
+</ul>
+
+<h3>Favorites:</h3>
+<ul>
+  <% current_user.favorites.each do |favorite| %>
+  <li><%= link_to favorite.movie.title, favorite.movie %></li>
+<% end %>
+</ul>
