@@ -25,6 +25,8 @@
       </li>
     <% end %>
 
+    <h1><%= link_to "MOOOvies", movies_path %></h1>
+
     <%= form_tag("/search/show", method: "get") do %>
       <%= label_tag(:q, "Search for:") %>
       <%= text_field_tag(:q) %>

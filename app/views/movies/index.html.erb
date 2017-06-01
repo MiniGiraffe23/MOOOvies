@@ -1,6 +1,3 @@
-<h1>MOOOvies</h1>
-
-
 <ul> <% @movies.each do |movie| %>
   <li><%= link_to image_tag(movie.poster_url), movie %></li>
   <p><%= link_to movie.title, movie %> (<%= movie.release_date.year %>)</p>
