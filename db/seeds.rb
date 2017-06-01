@@ -7,7 +7,7 @@ require 'ostruct'
   key = ENV["TMD_API_KEY"]
 
 
-  url = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&page=1&api_key=" + key
+  url = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&page=1&api_key=#{key}"
 
   uri = URI(url)
 
