@@ -1,5 +1,5 @@
 # README
-![logo](http://res.cloudinary.com/lx9gdutds/image/upload/v1496326047/mooovies-logo_vo1bdx.png)
+![logo](http://res.cloudinary.com/lx9gdutds/image/upload/v1496326172/Moovies_a5yb0a.png)
 
 Gem Description:
 
