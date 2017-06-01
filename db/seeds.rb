@@ -98,7 +98,9 @@ require 'ostruct'
    Movie.create!(tmdid: movie["id"], title: movie["title"],
     poster_url: poster, background_url: background, release_date: movie["release_date"])
   end
-  sleep(1.minutes)
+
+
+  sleep(20)
   for i in 30..60
 
   puts "#{i}"
@@ -124,7 +126,7 @@ require 'ostruct'
    end
 end
 
-  sleep(1.minutes)
+  sleep(20)
 
   for i in 1..29
 
@@ -153,7 +155,7 @@ end
 end
 
 
-  sleep(1.minutes)
+  sleep(20)
   for i in 30..60
 
   puts "#{i}"
@@ -183,7 +185,7 @@ end
    end
 end
 
-  sleep(1.minutes)
+  sleep(20)
   for i in 1..29
 
   puts "#{i}"
@@ -212,6 +214,48 @@ end
       movie.save
    end
 end
+
+users = []
+
+users << User.create!(first_name: "Bob", last_name: "Jones", email: "bobjones@example.com", password: "movieluvr")
+
+users << User.create!(first_name: "Gertrude", last_name: "Gomez", email: "gg@example.com", password: "movieluvr")
+
+users << User.create!(first_name: "Mooo", last_name: "Cow", email: "moo@cow.com", password: "movieluvr")
+
+
+users.each do |user|
+  user_movies = Movie.all
+
+  Watchlist.create!(user: user, movie: user_movies.sample)
+  Favorite.create!(user: user, movie: user_movies.sample)
+  Rating.create!(user: user, movie: user_movies.sample, spots: rand(1..5))
+  Comment.create!(user: user, movie: user_movies.sample, body: "Mooo")
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
