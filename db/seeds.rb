@@ -31,7 +31,7 @@ require 'ostruct'
       poster = "https://image.tmdb.org/t/p/w640" + movie["poster_path"]
     end
    Movie.create!(tmdid: movie["id"], title: movie["title"],
-    poster_url: poster, background_url: background, release_date: movie["release_date"])
+    description: movie["overview"], poster_url: poster, background_url: background, release_date: movie["release_date"])
   end
 
   url = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&page=2&api_key=" + key
@@ -58,7 +58,7 @@ require 'ostruct'
       poster = "https://image.tmdb.org/t/p/w640" + movie["poster_path"]
     end
    Movie.create!(tmdid: movie["id"], title: movie["title"],
-    poster_url: poster, background_url: background, release_date: movie["release_date"])
+    poster_url: poster, background_url: background, description: movie["overview"], release_date: movie["release_date"])
   end
 
 
@@ -96,7 +96,7 @@ require 'ostruct'
       poster = "https://image.tmdb.org/t/p/w640" + movie["poster_path"]
     end
    Movie.create!(tmdid: movie["id"], title: movie["title"],
-    poster_url: poster, background_url: background, release_date: movie["release_date"])
+    poster_url: poster, background_url: background, description: movie["overview"], release_date: movie["release_date"])
   end
 
 

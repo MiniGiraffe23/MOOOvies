@@ -1,0 +1,17 @@
+
+<h1><%= @movie.title %></h1>
+<div class ="poster"><img src="<%= @movie.poster_url %>" height="500" width="300"></div>
+<p><%= @movie.description %></p>
+
+<br>
+<% if @movie.trailer_url == nil %>
+<p> Sorry, no trailer is available for this movie.</p>
+<%else%>
+
+<iframe width="560" height="315" src="<%= @movie.trailer_url.gsub(/(https:\D{2}www.youtube.com\D{1})(watch\D{1}v=)(.+)/, '\1embed/\3') %>" frameborder="0" allowfullscreen></iframe>
+<%end%>
+<ul>
+<% @movie.comments.each do |comment| %>
+<li><%= comment.body %></li>
+<%end%>
+</ul>
