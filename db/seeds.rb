@@ -34,15 +34,6 @@ require 'ostruct'
     poster_url: poster, background_url: background, release_date: movie["release_date"])
   end
 
-
-
-
-
-
-
-
-
-
   url = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&page=2&api_key=" + key
 
   uri = URI(url)
@@ -107,6 +98,121 @@ require 'ostruct'
    Movie.create!(tmdid: movie["id"], title: movie["title"],
     poster_url: poster, background_url: background, release_date: movie["release_date"])
   end
+  sleep(1.minutes)
+  for i in 30..60
+
+  puts "#{i}"
+  movie = Movie.find(i)
+
+  # movies.each do |movie|
+
+  tmdid = movie.tmdid.to_s
+
+  url = "https://api.themoviedb.org/3/movie/" + tmdid +"?append_to_response=credits&api_key=" + key
+
+  uri = URI(url)
+
+ request = Net::HTTP.get(uri)
+
+  obj = JSON.parse(request)
+
+    obj["credits"]["crew"].each do |dumb|
+     if dumb.values_at("job")[0] == "Director"
+        movie.director = dumb.values_at("name")[0]
+        movie.save
+      end
+   end
+end
+
+  sleep(1.minutes)
+
+  for i in 1..29
+
+  puts "#{i}"
+  movie = Movie.find(i)
+
+  # movies.each do |movie|
+
+  tmdid = movie.tmdid.to_s
+
+  url = "https://api.themoviedb.org/3/movie/" + tmdid +"?append_to_response=credits&api_key=" + key
+
+  uri = URI(url)
+
+ request = Net::HTTP.get(uri)
+
+  obj = JSON.parse(request)
+
+   obj["credits"]["crew"].each do |dumb|
+     if dumb.values_at("job")[0] == "Director"
+        movie.director = dumb.values_at("name")[0]
+        movie.save
+    end
+   end
+
+end
 
 
-  Movie.all
+  sleep(1.minutes)
+  for i in 30..60
+
+  puts "#{i}"
+  movie = Movie.find(i)
+
+  # movies.each do |movie|
+
+  tmdid = movie.tmdid.to_s
+
+  url = "https://api.themoviedb.org/3/movie/" + tmdid +"/videos?api_key=" + key
+
+  uri = URI(url)
+
+ request = Net::HTTP.get(uri)
+
+  obj = JSON.parse(request)
+
+    obj["results"].each do |dumb|
+
+      if dumb["key"] == nil
+      trailer = nil
+    else
+      trailer = "https://www.youtube.com/watch?v=" + dumb["key"]
+    end
+      movie.trailer_url = trailer
+      movie.save
+   end
+end
+
+  sleep(1.minutes)
+  for i in 1..29
+
+  puts "#{i}"
+  movie = Movie.find(i)
+
+  # movies.each do |movie|
+
+  tmdid = movie.tmdid.to_s
+
+  url = "https://api.themoviedb.org/3/movie/" + tmdid +"/videos?api_key=" + key
+
+  uri = URI(url)
+
+ request = Net::HTTP.get(uri)
+
+  obj = JSON.parse(request)
+
+    obj["results"].each do |dumb|
+
+    if dumb["key"] == nil
+      trailer = nil
+    else
+      trailer = "https://www.youtube.com/watch?v=" + dumb["key"]
+    end
+      movie.trailer_url = trailer
+      movie.save
+   end
+end
+
+
+
+
