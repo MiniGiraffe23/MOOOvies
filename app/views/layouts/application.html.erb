@@ -25,7 +25,13 @@
       </li>
     <% end %>
 
-    <h1><%= link_to "MOOOvies", movies_path %></h1>
+
+  <h1><%= link_to root_path do %></h1>
+     <%= image_tag "Logo.png" %>
+     <% end %>
+
+
+
 
     <%= form_tag("/search/show", method: "get") do %>
       <%= label_tag(:q, "Search for:") %>
