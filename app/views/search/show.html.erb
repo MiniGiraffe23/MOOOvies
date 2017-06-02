@@ -1,6 +1,17 @@
-      <% if @search_results %>
-        <% @search_results.each do |movie| %>
-        <%= link_to image_tag(movie.poster_url), movie %>
-        <p><%= link_to movie.title, movie %> (<%= movie.release_date.year %>)</p>
-        <% end %>
-      <% end %>
+<% if @movie_results %>
+  <% @movie_results.each do |movie| %>
+  <%= link_to image_tag(movie.poster_url), movie %>
+  <p><%= link_to movie.title, movie %> (<%= movie.release_date.year %>)</p>
+  <% end %>
+<% end %>
+
+<% if @director_results %>
+  <% @director_results.each do |director| %>
+  <%= director %>
+  <ul>
+  <% Movie.where(director: director).each do |movie| %>
+  <li><%= link_to movie.title, movie %> (<%= movie.release_date.year %>)</li>
+  </ul>
+  <% end %>
+<% end %>
+<% end %>
