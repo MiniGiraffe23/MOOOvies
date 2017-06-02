@@ -38,27 +38,27 @@
   <% end %>
 <% end %>
 
-
-<% if @movie.ratings.where(user_id: current_user.id).count > 0 %>
-  <div class="updating-form">
-    <%= form_for :rating, url: movie_rating_path(@movie, @movie.ratings.where(user_id: current_user.id).pluck(:id)[0]), method: :put do |f| %>
-    <p>
-      <%= f.select :rate, options_for_select([0, 1, 2, 3, 4, 5]) %>
-      <%= f.submit "Change Rating" %>
-    </p>
-    <%end%>
-  </div>
-<% else %>
-  <div class="rating-form">
-    <%= form_for :rating, url: movie_ratings_path(@movie) do |f| %>
-    <p>
-      <%= f.select :rate, options_for_select([0, 1, 2, 3, 4, 5]) %>
-      <%= f.submit "Rate" %>
-    </p>
-    <%end%>
-  </div>
+<% if current_user %>
+  <% if @movie.ratings.where(user_id: current_user.id).count > 0 %>
+    <div class="updating-form">
+      <%= form_for :rating, url: movie_rating_path(@movie, @movie.ratings.where(user_id: current_user.id).pluck(:id)[0]), method: :put do |f| %>
+      <p>
+        <%= f.select :rate, options_for_select([0, 1, 2, 3, 4, 5]) %>
+        <%= f.submit "Change Rating" %>
+      </p>
+      <%end%>
+    </div>
+  <% else %>
+    <div class="rating-form">
+      <%= form_for :rating, url: movie_ratings_path(@movie) do |f| %>
+      <p>
+        <%= f.select :rate, options_for_select([0, 1, 2, 3, 4, 5]) %>
+        <%= f.submit "Rate" %>
+      </p>
+      <%end%>
+    </div>
+  <% end %>
 <% end %>
-
 
 
 
