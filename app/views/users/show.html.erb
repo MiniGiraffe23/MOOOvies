@@ -7,7 +7,7 @@
   <% current_user.watchlists.each do |watchlist| %>
   <li><%= link_to watchlist.movie.title, watchlist.movie %></li>
   <div>
-    <%= link_to "Remove From Watchlist", watchlist_path(watchlist.id), method: :delete %>
+    <%= link_to "Remove From Watchlist", movie_watchlist_path(watchlist.movie.id, watchlist.id), method: :delete %>
   </div>
 <% end %>
 </ul>
@@ -17,7 +17,7 @@
   <% current_user.favorites.each do |favorite| %>
   <li><%= link_to favorite.movie.title, favorite.movie %></li>
     <div>
-    <%= link_to "Remove From Favorites", favorite_path(favorite.id), method: :delete %>
+    <%= link_to "Remove From Favorites", movie_favorite_path(favorite.movie.id, favorite.id), method: :delete %>
   </div>
 <% end %>
 </ul>

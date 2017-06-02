@@ -10,5 +10,6 @@ class CommentsController < ApplicationController
     @user.comments << @comment
     @comment.save
     redirect_to movie_path(@movie)
+
   end
 end
