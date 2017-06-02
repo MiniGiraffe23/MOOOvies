@@ -10,6 +10,13 @@
 
 <iframe width="560" height="315" src="<%= @movie.trailer_url.gsub(/(https:\D{2}www.youtube.com\D{1})(watch\D{1}v=)(.+)/, '\1embed/\3') %>" frameborder="0" allowfullscreen></iframe>
 <%end%>
+<h4> Add a comment </h4>
+  <% if user_signed_in? %>
+    <%= render 'comments/form' %>
+  <% else %>
+    <p>Please <%= link_to('Login', new_user_session_path)  %> in to leave a comment.</p>
+  <% end %>
+
 <ul>
 <% @movie.comments.each do |comment| %>
 <li><%= comment.body %></li>
