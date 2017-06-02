@@ -13,3 +13,69 @@
  *= require_tree .
  *= require_self
  */
+@import 'normalize';
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+
+.cow-image {
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+  float: center;
+}
+
+.navbar {
+  position: relative;
+  min-heaight: $navbar-height;
+  margin-bottom: $navbar-margin-bottom;
+  border: 1px solid transparent;
+  background-color: #261D1D;
+
+  @include clearfix;
+
+  @media (min-width: $grid-float-breakpoint) {
+    border-radius: $navbar-border-radius;
+  }
+}
+.navbar a {
+   color: #E0DAD0;
+   padding-right: 10px;
+}
+
+#search-bar {
+  padding-top: 15px;
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+  float: center;
+
+  input[type="text"], name {
+    width: 70%;
+  }
+}
+
+.content {
+  padding: 20px;
+
+  width: 50%;
+    display: inline;
+    float: center;
+    margin: 0 auto;
+    img {
+      height: 800px;
+      padding-right: 10px;
+    }
+    li {
+      list-style-type: none;
+    }
+
+
+
+
+    float: center;
+    text-align: center;
+
+
+}
+
+
