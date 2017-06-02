@@ -4,7 +4,7 @@ class CreateWatchlists < ActiveRecord::Migration[5.0]
       t.references :movie, foreign_key: true
       # t.references :user, foreign_key: true
 
-      t.timestamp null: false
+      t.timestamps null: false
     end
   end
 end
