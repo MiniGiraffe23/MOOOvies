@@ -67,6 +67,8 @@
 
 <ul>
 <% @movie.comments.each do |comment| %>
+<li><%= comment.user.first_name %> posted at: <%= comment.created_at%></li>
 <li><%= comment.body %></li>
+<li><%= link_to "Edit", edit_movie_comment_path(@movie.id, comment.id)%>
 <%end%>
 </ul>
