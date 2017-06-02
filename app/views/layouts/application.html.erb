@@ -36,6 +36,7 @@
     <%= form_tag("/search/show", method: "get") do %>
       <%= label_tag(:m, "by movie:") %>
       <%= text_field_tag(:m) %>
+      <%= select_tag :search, options_for_select(['Movie', 'Director']) %>
       <%= submit_tag("Search") %>
     <% end %>
 

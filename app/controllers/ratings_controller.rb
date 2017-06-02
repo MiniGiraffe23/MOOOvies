@@ -12,7 +12,11 @@ class RatingsController < ApplicationController
   end
 
   def update
+    movie_rating = params["rating"].values_at("rate")[0].to_i
+
     @rating = Rating.find(params[:id])
+    @rating.update_attributes(spots: movie_rating)
+    redirect_to :back
   end
 
 end

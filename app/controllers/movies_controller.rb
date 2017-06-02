@@ -13,6 +13,13 @@ end
 
  def show
    @movie = Movie.find(params[:id])
+  #  if current_user
+  #   if @movie.ratings.where(user_id: current_user).count > 0
+  #     @rating = @movie.ratings.where(user_id: current_user)
+  #   else
+  #     @rating = Rating.new
+  #   end
+  # end
  end
 
 end
