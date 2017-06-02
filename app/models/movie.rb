@@ -8,10 +8,6 @@ class Movie < ActiveRecord::Base
 
 
   def average_rating
-    rating = self.ratings.reduce(0) {|sum, rating| (sum + rating.spots)/self.ratings.count }
-  end
-
-  def avg_rating
     self.ratings.reduce(0) {|sum, rating| (sum + rating.spots) } / self.ratings.count
   end
 
