@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+
+  # before_action :user_signed_in?, only: [ :create]
+
   def create
     @user = current_user
     @movie = Movie.find(params[:id])
