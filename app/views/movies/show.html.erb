@@ -1,22 +1,25 @@
+<body class="show-content">
+  <h1 class="title"><%= @movie.title %></h1>
 
-<h1><%= @movie.title %></h1>
   <div class ="poster"><img src="<%= @movie.poster_url %>" height="500" width="300"></div>
+    <div class="description">
   <p><%= @movie.description %></p>
     <% if @movie.ratings.count > 0 %>
       <p>Movie Rating:  <%= @movie.average_rating %></p>
     <% else %>
   <p> Be The First To Rate This Movie </p>
     <% end %>
+
 <% if current_user %>
-<% if current_user.ratings.where("movie_id = ?", @movie.id).length > 0 %>
-  <p>Your Rating:  <%= current_user.ratings.where("movie_id = ?", @movie.id).pluck(:spots)[0] %></p>
-  <% else %>
-  <p> You still Need to Rate This Movie</p>
-<% end %>
+  <% if current_user.ratings.where("movie_id = ?", @movie.id).length > 0 %>
+    <p>Your Rating:  <%= current_user.ratings.where("movie_id = ?", @movie.id).pluck(:spots)[0] %></p>
+    <% else %>
+    <p> You still Need to Rate This Movie</p>
+  <% end %>
 <%end%>
 <br>
 
-
+</div>
 <% if current_user %>
   <% if current_user.favorites.where("movie_id = ?", @movie.id).length > 0 %>
 
@@ -26,36 +29,38 @@
     <%= link_to "Add to Favorites", movie_favorites_path(@movie), method: :post %>
 <% end %>
 
+
+
   <% if current_user.watchlists.where("movie_id = ?", @movie.id).length > 0 %>
 
     <%= link_to "Remove From Watchlist", movie_watchlist_path(@movie.id, current_user.watchlists.where("movie_id = ?", @movie.id).pluck(:id)[0]), method: :delete %>
   <% else %>
-    <%= link_to "Add to Watchlist", movie_watchlists_path(@movie), method: :post %>
+      <%= link_to "Add to Watchlist", movie_watchlists_path(@movie), method: :post %>
 
+    <% end %>
   <% end %>
-<% end %>
 
-<% if current_user %>
-  <% if @movie.ratings.where(user_id: current_user.id).count > 0 %>
-    <div class="updating-form">
-      <%= form_for :rating, url: movie_rating_path(@movie, @movie.ratings.where(user_id: current_user.id).pluck(:id)[0]), method: :put do |f| %>
-      <p>
-        <%= f.select :rate, options_for_select([0, 1, 2, 3, 4, 5]) %>
-        <%= f.submit "Change Rating" %>
-      </p>
-      <%end%>
-    </div>
-  <% else %>
-    <div class="rating-form">
-      <%= form_for :rating, url: movie_ratings_path(@movie) do |f| %>
-      <p>
-        <%= f.select :rate, options_for_select([0, 1, 2, 3, 4, 5]) %>
-        <%= f.submit "Rate" %>
-      </p>
-      <%end%>
-    </div>
+  <% if current_user %>
+    <% if @movie.ratings.where(user_id: current_user.id).count > 0 %>
+      <div class="updating-form">
+        <%= form_for :rating, url: movie_rating_path(@movie, @movie.ratings.where(user_id: current_user.id).pluck(:id)[0]), method: :put do |f| %>
+        <p>
+          <%= f.select :rate, options_for_select([0, 1, 2, 3, 4, 5]) %>
+          <%= f.submit "Change Rating" %>
+        </p>
+        <%end%>
+      </div>
+    <% else %>
+      <div class="rating-form">
+        <%= form_for :rating, url: movie_ratings_path(@movie) do |f| %>
+        <p>
+          <%= f.select :rate, options_for_select([0, 1, 2, 3, 4, 5]) %>
+          <%= f.submit "Rate" %>
+        </p>
+        <%end%>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
 
 
 
@@ -82,3 +87,5 @@
 <li><%= link_to "Edit", edit_movie_comment_path(@movie.id, comment.id)%>
 <%end%>
 </ul>
+
+</body>

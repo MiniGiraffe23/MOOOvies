@@ -3,10 +3,20 @@
   <%= f.submit %>
 <% end %>
 
+<body class="main-content">
+  <div class="sort-bar">
+    <%= form_for(:movie, url: movies_path, method: :get) do |f| %>
+      <%= f.select :sort, options_for_select(['Most Watchlisted', 'Most Favorited', 'Highest Rated']) %>
+      <%= f.submit %>
+    <% end %>
+  </div>
 
 
-<ul> <% @movies.each do |movie| %>
-  <li><%= link_to image_tag(movie.poster_url), movie %></li>
-  <p><%= link_to movie.title, movie %> (<%= movie.release_date.year %>)</p>
-  <% end %>
-</ul>
+  <div class="content">
+     <% @movies.each do |movie| %>
+      <li class="poster"><%= link_to image_tag(movie.poster_url), movie %></li>
+      <br>
+      <li class="title"><%= link_to movie.title, movie %> (<%= movie.release_date.year %>)</li>
+      <% end %>
+  </div>
+</body>
