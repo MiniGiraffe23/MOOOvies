@@ -11,6 +11,10 @@ class Movie < ActiveRecord::Base
     rating = self.ratings.reduce(0) {|sum, rating| (sum + rating.spots)/self.ratings.count }
   end
 
+  def avg_rating
+    self.ratings.reduce(0) {|sum, rating| (sum + rating.spots) } / self.ratings.count
+  end
+
   def self.sort_movies_by(condition)
     p condition
     if condition == "Most Watchlisted"
