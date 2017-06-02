@@ -17,35 +17,48 @@
 <br>
 
 
-<%= link_to "Add to Favorites", movie_favorites_path(@movie), method: :post %>
-<%= link_to "Add to Watchlist", movie_watchlists_path(@movie), method: :post %>
+
+
 
 <% if current_user %>
-<% if current_user.favorites.where("movie_id = ?", @movie.id).length > 0 %>
+  <% if current_user.favorites.where("movie_id = ?", @movie.id).length > 0 %>
 
-<%= link_to "Remove From Favorites", movie_favorite_path(@movie.id, current_user.favorites.where("movie_id = ?", @movie.id).pluck(:id)[0]), method: :delete %>
+    <%= link_to "Remove From Favorites", movie_favorite_path(@movie.id, current_user.favorites.where("movie_id = ?", @movie.id).pluck(:id)[0]), method: :delete %>
+  <% else %>
 
-
+    <%= link_to "Add to Favorites", movie_favorites_path(@movie), method: :post %>
 <% end %>
 
-<% if current_user.watchlists.where("movie_id = ?", @movie.id).length > 0 %>
+  <% if current_user.watchlists.where("movie_id = ?", @movie.id).length > 0 %>
 
-<%= link_to "Remove From Watchlist", movie_watchlist_path(@movie.id, current_user.watchlists.where("movie_id = ?", @movie.id).pluck(:id)[0]), method: :delete %>
+    <%= link_to "Remove From Watchlist", movie_watchlist_path(@movie.id, current_user.watchlists.where("movie_id = ?", @movie.id).pluck(:id)[0]), method: :delete %>
+  <% else %>
+    <%= link_to "Add to Watchlist", movie_watchlists_path(@movie), method: :post %>
 
-
+  <% end %>
 <% end %>
+
+<% if current_user %>
+  <% if @movie.ratings.where(user_id: current_user.id).count > 0 %>
+    <div class="updating-form">
+      <%= form_for :rating, url: movie_rating_path(@movie, @movie.ratings.where(user_id: current_user.id).pluck(:id)[0]), method: :put do |f| %>
+      <p>
+        <%= f.select :rate, options_for_select([0, 1, 2, 3, 4, 5]) %>
+        <%= f.submit "Change Rating" %>
+      </p>
+      <%end%>
+    </div>
+  <% else %>
+    <div class="rating-form">
+      <%= form_for :rating, url: movie_ratings_path(@movie) do |f| %>
+      <p>
+        <%= f.select :rate, options_for_select([0, 1, 2, 3, 4, 5]) %>
+        <%= f.submit "Rate" %>
+      </p>
+      <%end%>
+    </div>
+  <% end %>
 <% end %>
-
-
-<div class="rating-form">
-<%= form_for :rating, url: movie_ratings_path(@movie) do |f| %>
-<p>
-  <%= f.select :rate, options_for_select([1, 2, 3, 4, 5]) %>
-  <%= f.submit %>
-</p>
-<%end%>
-</div>
-
 
 
 

@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :ratings
   has_many :comments
 
+  validates :watchlists, uniqueness: {scope: :movie, message: "This is already on your watchlist!"}
 
 
   devise :database_authenticatable, :registerable,
