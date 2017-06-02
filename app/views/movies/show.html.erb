@@ -2,6 +2,49 @@
 <h1><%= @movie.title %></h1>
 <div class ="poster"><img src="<%= @movie.poster_url %>" height="500" width="300"></div>
 <p><%= @movie.description %></p>
+<% if @movie.ratings.count > 0 %>
+<p>Movie Rating:  <%= @movie.avg_rating %></p>
+<% else %>
+<p> Be The First To Rate This Movie </p>
+<% end %>
+<% if current_user.ratings.where("movie_id = ?", @movie.id).length > 0 %>
+  <p>Your Rating:  <%= current_user.ratings.where("movie_id = ?", @movie.id).pluck(:spots)[0] %></p>
+  <% else %>
+  <p> You still Need to Rate This Movie</p>
+<% end %>
+<br>
+
+
+<%= link_to "Add to Favorites", movie_favorites_path(@movie), method: :post %>
+<%= link_to "Add to Watchlist", movie_watchlists_path(@movie), method: :post %>
+
+<% if current_user.favorites.where("movie_id = ?", @movie.id).length > 0 %>
+
+<%= link_to "Remove From Favorites", movie_favorite_path(@movie.id, current_user.favorites.where("movie_id = ?", @movie.id).pluck(:id)[0]), method: :delete %>
+
+
+<% end %>
+
+<% if current_user.watchlists.where("movie_id = ?", @movie.id).length > 0 %>
+
+<%= link_to "Remove From Watchlist", movie_watchlist_path(@movie.id, current_user.watchlists.where("movie_id = ?", @movie.id).pluck(:id)[0]), method: :delete %>
+
+
+<% end %>
+
+
+<div class="rating-form">
+<%= form_for :rating, url: movie_ratings_path(@movie) do |f| %>
+<p>
+  <%= f.select :rate, options_for_select([1, 2, 3, 4, 5]) %>
+  <%= f.submit %>
+</p>
+<%end%>
+</div>
+
+
+
+
 
 <br>
 <% if @movie.trailer_url == nil %>
@@ -10,6 +53,7 @@
 
 <iframe width="560" height="315" src="<%= @movie.trailer_url.gsub(/(https:\D{2}www.youtube.com\D{1})(watch\D{1}v=)(.+)/, '\1embed/\3') %>" frameborder="0" allowfullscreen></iframe>
 <%end%>
+
 <h4> Add a comment </h4>
   <% if user_signed_in? %>
     <%= render 'comments/form' %>
