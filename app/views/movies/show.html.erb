@@ -42,7 +42,7 @@
 <div class="rating-form">
 <%= form_for :rating, url: movie_ratings_path(@movie) do |f| %>
 <p>
-  <%= f.select :rate, options_for_select([1, 2, 3, 4, 5]) %>
+  <%= f.select :rate, options_for_select([0, 1, 2, 3, 4, 5]) %>
   <%= f.submit %>
 </p>
 <%end%>

@@ -6,9 +6,13 @@ class RatingsController < ApplicationController
     p movie_rating
     @user = current_user
     @movie = Movie.find(params[:movie_id])
-    Rating.create(user: @user, movie: @movie, spots: movie_rating)
+    @rating = Rating.create(user: @user, movie: @movie, spots: movie_rating)
     redirect_to movie_path(@movie)
 
+  end
+
+  def update
+    @rating = Rating.find(params[:id])
   end
 
 end
