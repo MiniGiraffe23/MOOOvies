@@ -17,9 +17,6 @@
 <br>
 
 
-
-
-
 <% if current_user %>
   <% if current_user.favorites.where("movie_id = ?", @movie.id).length > 0 %>
 

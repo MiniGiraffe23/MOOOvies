@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
  def index
+  p params
   if params["movie"] != nil
     puts "were in params"
     @movies = Movie.sort_movies_by(params["movie"].values_at("sort")[0])
