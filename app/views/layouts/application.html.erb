@@ -23,7 +23,6 @@
 
   <body>
 
-
   <h1><%= link_to root_path do %></h1>
     <div class="cow-image">
        <%= image_tag "Logo.png" %>
@@ -32,12 +31,11 @@
 
     <div id="search-bar">
       <%= form_tag("/search/show", method: "get") do %>
-        <%= select_tag :search, options_for_select(['Movie', 'Director']) %>
+        <%= select_tag :search, options_for_select(['Movie', 'Director'], params[:search]) %>
         <%= text_field_tag(:m) %>
         <%= submit_tag("Search") %>
       <% end %>
     </div>
-
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>

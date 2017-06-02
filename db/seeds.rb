@@ -217,11 +217,11 @@ end
 
 users = []
 
-users << User.create!(first_name: "Bob", last_name: "Jones", email: "bobjones@example.com", password: "movieluvr")
+users << User.create(first_name: "Bob", last_name: "Jones", email: "bobjones@example.com", password: "movieluvr")
 
-users << User.create!(first_name: "Gertrude", last_name: "Gomez", email: "gg@example.com", password: "movieluvr")
+users << User.create(first_name: "Gertrude", last_name: "Gomez", email: "gg@example.com", password: "movieluvr")
 
-users << User.create!(first_name: "Mooo", last_name: "Cow", email: "moo@cow.com", password: "movieluvr")
+users << User.create(first_name: "Mooo", last_name: "Cow", email: "moo@cow.com", password: "movieluvr")
 
 
 users.each do |user|
