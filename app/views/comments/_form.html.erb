@@ -1,0 +1,9 @@
+<div class="comment-form">
+<%= form_for :comment , url: movie_comment_path(@movie.id) do |f| %>
+<p>
+  <%= f.label :body %><br>
+  <%= f.text_area :body %>
+  <%=f.submit "submit comment"%>
+</p>
+<%end%>
+</div>
