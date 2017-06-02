@@ -7,12 +7,21 @@ class Movie < ActiveRecord::Base
   has_many :watchlists
 
 
-  def average_rating
-    rating = self.ratings.reduce(0) {|sum, rating| (sum + rating.spots)/self.ratings.count }
-  end
+  # def average_rating
+  #   rating = self.ratings.reduce(0) {|sum, rating| (sum + rating.spots)/self.ratings.count }
+  # end
 
-  def avg_rating
-    self.ratings.reduce(0) {|sum, rating| (sum + rating.spots) } / self.ratings.count
+  def average_rating
+    if self.ratings.count > 0
+      total = self.ratings.reduce(0) {|sum, rating| (sum + rating.spots) }
+      p total
+     p rating = (total.to_f / self.ratings.count.to_f).round(1)
+
+
+
+    else
+      average_rating = 0
+    end
   end
 
   def self.sort_movies_by(condition)

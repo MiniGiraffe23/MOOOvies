@@ -1,12 +1,12 @@
 
 <h1><%= @movie.title %></h1>
-<div class ="poster"><img src="<%= @movie.poster_url %>" height="500" width="300"></div>
-<p><%= @movie.description %></p>
-<% if @movie.ratings.count > 0 %>
-<p>Movie Rating:  <%= @movie.avg_rating %></p>
-<% else %>
-<p> Be The First To Rate This Movie </p>
-<% end %>
+  <div class ="poster"><img src="<%= @movie.poster_url %>" height="500" width="300"></div>
+  <p><%= @movie.description %></p>
+    <% if @movie.ratings.count > 0 %>
+      <p>Movie Rating:  <%= @movie.average_rating %></p>
+    <% else %>
+  <p> Be The First To Rate This Movie </p>
+    <% end %>
 <% if current_user %>
 <% if current_user.ratings.where("movie_id = ?", @movie.id).length > 0 %>
   <p>Your Rating:  <%= current_user.ratings.where("movie_id = ?", @movie.id).pluck(:spots)[0] %></p>
