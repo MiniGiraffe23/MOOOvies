@@ -17,23 +17,25 @@
 <br>
 
 
-<%= link_to "Add to Favorites", movie_favorites_path(@movie), method: :post %>
-<%= link_to "Add to Watchlist", movie_watchlists_path(@movie), method: :post %>
+
+
 
 <% if current_user %>
-<% if current_user.favorites.where("movie_id = ?", @movie.id).length > 0 %>
+  <% if current_user.favorites.where("movie_id = ?", @movie.id).length > 0 %>
 
-<%= link_to "Remove From Favorites", movie_favorite_path(@movie.id, current_user.favorites.where("movie_id = ?", @movie.id).pluck(:id)[0]), method: :delete %>
+    <%= link_to "Remove From Favorites", movie_favorite_path(@movie.id, current_user.favorites.where("movie_id = ?", @movie.id).pluck(:id)[0]), method: :delete %>
+  <% else %>
 
-
+    <%= link_to "Add to Favorites", movie_favorites_path(@movie), method: :post %>
 <% end %>
 
-<% if current_user.watchlists.where("movie_id = ?", @movie.id).length > 0 %>
+  <% if current_user.watchlists.where("movie_id = ?", @movie.id).length > 0 %>
 
-<%= link_to "Remove From Watchlist", movie_watchlist_path(@movie.id, current_user.watchlists.where("movie_id = ?", @movie.id).pluck(:id)[0]), method: :delete %>
+    <%= link_to "Remove From Watchlist", movie_watchlist_path(@movie.id, current_user.watchlists.where("movie_id = ?", @movie.id).pluck(:id)[0]), method: :delete %>
+  <% else %>
+    <%= link_to "Add to Watchlist", movie_watchlists_path(@movie), method: :post %>
 
-
-<% end %>
+  <% end %>
 <% end %>
 
 
