@@ -1,13 +1,8 @@
-<%= form_for(:movie, url: movies_path, method: :get) do |f| %>
-  <%= f.select :sort, options_for_select(['Most Watchlisted', 'Most Favorited', 'Highest Rated'], params[:sort]) %>
-  <%= f.submit %>
-<% end %>
-
 <body class="main-content">
   <div class="sort-bar">
     <%= form_for(:movie, url: movies_path, method: :get) do |f| %>
       <%= f.select :sort, options_for_select(['Most Watchlisted', 'Most Favorited', 'Highest Rated']) %>
-      <%= f.submit %>
+      <%= f.submit "Sort" %>
     <% end %>
   </div>
 
