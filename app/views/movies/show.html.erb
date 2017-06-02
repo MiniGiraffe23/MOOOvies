@@ -7,17 +7,20 @@
 <% else %>
 <p> Be The First To Rate This Movie </p>
 <% end %>
+<% if current_user %>
 <% if current_user.ratings.where("movie_id = ?", @movie.id).length > 0 %>
   <p>Your Rating:  <%= current_user.ratings.where("movie_id = ?", @movie.id).pluck(:spots)[0] %></p>
   <% else %>
   <p> You still Need to Rate This Movie</p>
 <% end %>
+<%end%>
 <br>
 
 
 <%= link_to "Add to Favorites", movie_favorites_path(@movie), method: :post %>
 <%= link_to "Add to Watchlist", movie_watchlists_path(@movie), method: :post %>
 
+<% if current_user %>
 <% if current_user.favorites.where("movie_id = ?", @movie.id).length > 0 %>
 
 <%= link_to "Remove From Favorites", movie_favorite_path(@movie.id, current_user.favorites.where("movie_id = ?", @movie.id).pluck(:id)[0]), method: :delete %>
@@ -30,6 +33,7 @@
 <%= link_to "Remove From Watchlist", movie_watchlist_path(@movie.id, current_user.watchlists.where("movie_id = ?", @movie.id).pluck(:id)[0]), method: :delete %>
 
 
+<% end %>
 <% end %>
 
 
