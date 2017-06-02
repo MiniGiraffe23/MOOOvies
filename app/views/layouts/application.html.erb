@@ -31,8 +31,6 @@
      <% end %>
 
 
-
-
     <%= form_tag("/search/show", method: "get") do %>
       <%= label_tag(:m, "by movie:") %>
       <%= text_field_tag(:m) %>
@@ -40,11 +38,6 @@
       <%= submit_tag("Search") %>
     <% end %>
 
-    <%= form_tag("/search/show", method: "get") do %>
-      <%= label_tag(:d, "by director:") %>
-      <%= text_field_tag(:d) %>
-      <%= submit_tag("Search") %>
-    <% end %>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
